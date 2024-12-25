@@ -26,7 +26,7 @@ function displayWorks(works) {
     // Crée dynamiquement un conteneur de galerie
     const gallery = document.createElement("div");
     gallery.className = "gallery"; // Ajoute une classe CSS à la galerie
-    document.body.appendChild(gallery); // Ajoute la galerie au `<body>`
+    document.querySelector("#portfolio").appendChild(gallery); // Ajoute la galerie au `<body>`
 
     // Parcourt les travaux récupérés depuis l'API
     works.forEach(work => {
