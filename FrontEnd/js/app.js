@@ -1,5 +1,6 @@
 // Fonction pour récupérer les données des travaux (works) depuis l'API
-async function getWorks(filters) {
+async function getWorks(filter) {
+    document.querySelector(".gallery").innerHTML = '';
     const url = "http://localhost:5678/api/works"; // URL de l'API
     try {
         // Envoie une requête GET à l'API
@@ -12,17 +13,25 @@ async function getWorks(filters) {
 
         // Convertit la réponse en JSON
         const json = await response.json();
-        console.log(json); // Vérifie les données dans la console
-
-        // Parcourt les données et ajoute chaque élément à la galerie
-        for (let i = 0; i < json.length; i++) {
-            setFigure(json[i]); // Appelle la fonction pour créer une figure
+        if (filter) {
+            const filtered = json.filter((data) => data.categoryId === filter);
+            for (let i = 0; i < filtered.length; i++) {
+                setFigure(filtered[i]);
+            } 
+        }   else {
+            // Parcourt les données et ajoute chaque élément à la galerie
+            for (let i = 0; i < json.length; i++) {
+                setFigure(json[i]); // Appelle la fonction pour créer une figure
+            }
         }
-    } catch (error) {
+    }   catch (error) {
         // Affiche l'erreur dans la console en cas de problème
         console.error("Erreur lors de la récupération des travaux :", error.message);
     }
 }
+
+getWorks();
+
 
 // Fonction pour créer et ajouter une figure dans la galerie
 function setFigure(data) {
@@ -38,12 +47,6 @@ function setFigure(data) {
     // Sélectionne la galerie et ajoute la figure
     document.querySelector(".gallery").append(figure);
 }
-
-// Appelle la fonction pour récupérer et afficher les travaux
-getWorks();
-
-
-////////////////////////////////////////////////////////////
 
 
 async function getCategories() {
@@ -72,8 +75,12 @@ async function getCategories() {
 getCategories();
 
 function setFilter(data) {
+    console.log(data);
     const div = document.createElement("div");
+    div.className = data.id;
+    div.addEventListener("click", () => getWorks(data.id));
     div.innerHTML = `${data.name}`;
     document.querySelector(".filters").append(div);
 }
-document.querySelector(".tous").addEventListener("click", () => getWorks(filters));
+
+document.querySelector(".tous").addEventListener("click", () => getWorks());
