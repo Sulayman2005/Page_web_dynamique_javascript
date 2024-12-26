@@ -30,6 +30,10 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
+	background: #FFFEF8;
+	width: 100%;
+	font-family: 'Work Sans';
+	font-size: 14px;
 }
 ol, ul {
 	list-style: none;
@@ -88,8 +92,9 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
-
+	cursor: pointer;
 }
+
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
@@ -137,6 +142,30 @@ li:hover {
 	width: 100%;
 
 }
+
+/* Filtres */
+
+.filters {
+	align-items: center;
+	display: flex;
+	gap: 15px;
+	justify-content: center;
+	margin-bottom: 60px;
+	margin-top: 20px;
+}
+.filters div {
+	border: 1px solid #1D6154;
+	border-radius: 60px;
+	color: #1D6154;
+	cursor: pointer;
+	font-family: 'Syne', sans-serif;
+	padding: 10px 25px 10px 25px;
+}
+.filters div:hover {
+	color: white;
+	background-color: #1D6154;
+}
+
 #contact {
 	width: 50%;
 margin: auto;
