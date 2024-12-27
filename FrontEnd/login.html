@@ -8,8 +8,8 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
-	<link rel="stylesheet" href="./assets/style.css">
-	<script src="./js/app.js" defer></script>
+	<link rel="stylesheet" href="./assets/login.css">
+    <script src="./js/login.js" defer></script>
 </head>
 <body>
 <header>
@@ -35,4 +35,22 @@
 </header>
 <main id="login">
     <h2 class="login_title">Login</h2>
+    <form id="login_form" action="http://localhost:5678/api/users/login" method="post">
+        <label for="email">E-mail</label>
+        <input id="email" type="email" required="required">
+        <label for="password">Mot de passe</label>
+        <input id="password" type="password" required="required">
+        <div id="error"></div>
+        <input id="connection" type="submit" value="Se connecter">
+    </form>
+        <a id="lostpassword" href="#">
+            Mot de passe oublié
+        </a>
 </main>
+<footer id="footer_login">
+    <nav>
+        <ul>
+            <li>Mentions Légales</li>
+        </ul>
+    </nav>
+</footer>
