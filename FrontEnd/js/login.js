@@ -1,30 +1,38 @@
-const email = document.querySelector("form #email") ;
-const motdepasse = document.querySelector("form #password");
-const error = document.querySelector(".error");
-const connection = document.querySelector("form #connection");
+document.getElementById("login_form").addEventListener("submit", async function(e) {
+    e.preventDefault();
 
-async function getLogin() {
-    const url = "http://localhost:5678/api/users/login";
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    const errorDiv = document.getElementById("error");
+    errorDiv.textContent = ''; 
+    errorDiv.style.color = 'red';
+
     try {
-        // Envoie une requête GET à l'API
-        const response = await fetch(url);
+        const response = await fetch("http://localhost:5678/api/users/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ email, password }),
+        });
 
-        // Vérifie si la réponse est correcte (code HTTP 200-299)
         if (!response.ok) {
-            throw new Error(`Erreur : ${response.status}`);
+            if (response.status === 401) {
+                errorDiv.textContent = "Erreur dans l'identifiant ou le mot de passe";
+            } else {
+                errorDiv.textContent = "Erreur, veuillez réessayer";
+            }
+            return;
         }
 
-        // Convertit la réponse en JSON
-        const json = await response.json();
-        console.log(json);
-        for (let i = 0; i < json.length; i++) {
-            console.log((json[i]));
-        }
+        const data = await response.json();
+        console.log("Connexion réussie :", data);
+
+        window.location.href = "./index.html";
+
     } catch (error) {
-        // Affiche l'erreur dans la console en cas de problème
-        console.error("Erreur lors de la récupération des travaux :", error.message);
+        errorDiv.textContent = "Une erreur s'est produite, veuillez réessayer";
+        console.error("Erreur lors de la tentative de connexion :", error);
     }
-}
-
-getLogin();
-
+});
