@@ -84,3 +84,8 @@ function setFilter(data) {
 }
 
 document.querySelector(".tous").addEventListener("click", () => getWorks());
+
+//MODAL
+
+let modal = null;
+
