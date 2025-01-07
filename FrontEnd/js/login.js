@@ -17,18 +17,19 @@ document.getElementById("login_form").addEventListener("submit", async function 
             },
             body: JSON.stringify({ email, password }),
         });
+        console.log(response);
 
-        if (email == "canteausulayman@mail.fr" || password == "Sulayman49") {
-            const data = await response.json();
-            console.log("Connexion réussie :", data);
-            window.location.href = "index.html";
-        } else {
-            if (response.status === 200) {
+        if(!response.ok) {
+            if (response.status === 401) {
                 errorDiv.textContent = "Erreur dans l'identifiant ou le mot de passe";
             } else {
                 errorDiv.textContent = "Une erreur est survenue veuillez résayer";
-            } return;
-        }
+            }
+        } else {
+            const data = await response.json();
+            console.log("Connexion réussie :", data);
+            window.location.href = "index.html";
+        }    
     } catch (error) {
         console.error("Erreur lors de la tentative de connexion :", error);
     }
