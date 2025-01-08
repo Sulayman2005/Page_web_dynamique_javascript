@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-	<meta charset="UTF-8">
-	<title>Sophie Bluel - Architecte d'intérieur</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
-	<meta name="description" content="">
-	<link rel="stylesheet" href="./assets/style.css">
+	<head>
+		<meta charset="UTF-8">
+		<title>Sophie Bluel - Architecte d'intérieur</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
+		<meta name="description" content="">
+		<link rel="stylesheet" href="./assets/style.css">
+		<script
+      src="https://kit.fontawesome.com/2df4fe767c.js"
+      crossorigin="anonymous"
+    ></script>
 	<script src="./js/app.js" defer></script>
 </head>
 <body>
 
-	<a href="#modal1" class="js-modal">Mode édition</a>
+	<header class="text_title">
+		<p class="text_content"><i class="fa-regular 
+			fa-pen-to-square"></i>Mode édition</p>
+	</header>
+	<aside id="modal1"
+	class="modal"
+	aria-hidden="true"
+	role="dialog"
+	 aria-labelledby="title-modal" 
+	 style="display: none">
 
-	<aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="title-modal" style="display: none">
-		<div class="modal-wrapper js-modal-stop">
-			<button class="js-modal-close">Fermer la boite modale</button>
-			<h1 id="title-modal">hello</h1>
-		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-		</p>
-		<p>
-			Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet. Duis sagittis ipsum. Praesent mauris. Fusce nec tellus sed augue semper porta. Mauris massa.
-		</p>
-		<p>
-			Curabitur sodales ligula in libero. Sed dignissim lacinia nunc. Curabitur tortor. Pellentesque nibh. Aenean quam. In scelerisque sem at dolor. Maecenas mattis. Sed convallis tristique sem. Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus non, massa.
-		</p>
+	<div class="modal-wrapper js-modal-stop">
+		<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
+		<h1 id="title-modal">Galerie Photo</h1>
 	</div></aside>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -40,7 +43,7 @@
 				<a href="#contact">contact</a>
 			</li>
 			<li>
-				<a class="login_link" href="./login.html">login</a>
+				<a class="login_link" href="./login.html">logout</a>
 			</li>
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
@@ -59,7 +62,9 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<h2>Mes Projets<a href="#modal1" class="js-modal"><i class="fa-regular 
+			fa-pen-to-square"></i>Modifier
+		</a></h2>
 		<div class="filters">
 			<div class="tous">Tous</div>
 		</div>

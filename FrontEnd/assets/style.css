@@ -60,8 +60,30 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px;
 }
+
+/** title header mode ediation **/
+
+.text_title {
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+	font-family: Work Sans;
+	font-weight: 400;
+	text-align: center;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+}
+
+.text_content {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    width: 100%;
+}
+
 
 /** modal**/
 
@@ -79,14 +101,39 @@ header {
 
 .modal-wrapper {
 	background-color: #FFF;
-	height: 500px;
-	width: 600px;
+	height: 488px;
+	width: 530px;
+	border-radius: 10px 10px 10px 10px;
+	background: #FFFFFF;
+	top: 660px;
+	left: 405px;
 	padding: 20px;
 	max-width: calc(100vw - 20px);
 	max-height: calc(100vh - 20px);
 	overflow: auto;
 }
 
+.js-modal-close {
+	background-color: white;
+	border: none;
+	width: 24px;
+	height: 24px;
+}
+
+#title-modal {
+	color: #000000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-family: Work Sans;
+	font-size: 26px;
+	font-weight: 400;
+	line-height: 30.5px;
+	text-align: center;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
+	margin: 2rem;
+}
 
 section {
 	margin: 50px 0
@@ -108,12 +155,28 @@ h1 > span {
 ;
 }
 
-h2{
-	font-family: 'Syne';
-	font-weight: 700;
-	font-size: 30px;
-	color: #1D6154
+h2 {
+    font-family: 'Syne';
+    font-weight: 700;
+    font-size: 30px;
+    color: #1D6154;
 }
+
+.fa-pen-to-square {
+	font-size: 14px;
+	margin-right: 0.5rem;
+}
+
+a {
+    text-decoration: none;
+}
+
+.js-modal {
+	color: black;
+	font-size: 10px;
+	margin-left: 2rem;
+}
+
 nav ul {
 	display: flex;
 	align-items: center;
