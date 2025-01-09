@@ -16,20 +16,19 @@
 	<script src="./js/app.js" defer></script>
 </head>
 <body>
-
-	<header class="text_title">
-		<p class="text_content"><i class="fa-regular 
-			fa-pen-to-square"></i>Mode édition</p>
-	</header>
-	<aside id="modal1"
-	class="modal"
-	aria-hidden="true"
-	role="dialog"
-	 aria-labelledby="title-modal" 
-	 style="display: none">
+	<p><a href="#modal1" class="js-modal"><i class="fa-regular 
+		fa-pen-to-square"></i>Modifier
+	</a></p>
+	<aside 
+		id="modal1"
+		class="modal"
+		aria-hidden="true"
+		role="dialog"
+		aria-labelledby="title-modal" 
+		style="display: none">
 
 	<div class="modal-wrapper js-modal-stop">
-		<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
+		<a class="js-modal-close"><i class="fa-solid fa-xmark"></i></a>
 		<h1 id="title-modal">Galerie Photo</h1>
 	</div></aside>
 <header>
@@ -62,9 +61,7 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets<a href="#modal1" class="js-modal"><i class="fa-regular 
-			fa-pen-to-square"></i>Modifier
-		</a></h2>
+		<h2>Mes Projets</h2>
 		<div class="filters">
 			<div class="tous">Tous</div>
 		</div>

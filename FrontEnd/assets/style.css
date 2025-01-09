@@ -63,27 +63,6 @@ header {
 	margin: 50px;
 }
 
-/** title header mode ediation **/
-
-.text_title {
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-	font-family: Work Sans;
-	font-weight: 400;
-	text-align: center;
-	text-underline-position: from-font;
-	text-decoration-skip-ink: none;
-}
-
-.text_content {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-    width: 100%;
-}
-
 
 /** modal**/
 
@@ -100,7 +79,7 @@ header {
 }
 
 .modal-wrapper {
-	background-color: #FFF;
+	background-color: #FFFF;
 	height: 488px;
 	width: 530px;
 	border-radius: 10px 10px 10px 10px;
@@ -108,7 +87,7 @@ header {
 	top: 660px;
 	left: 405px;
 	padding: 20px;
-	max-width: calc(100vw - 20px);
+	max-width: calc(100vh - 20px);
 	max-height: calc(100vh - 20px);
 	overflow: auto;
 }
@@ -118,6 +97,23 @@ header {
 	border: none;
 	width: 24px;
 	height: 24px;
+}
+
+.js-modal {
+	max-width: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: Hug (129px)px;
+	height: Hug (19px)px;
+	top: 19.5px;
+	left: 656.5px;
+	background-color: rgb(171, 131, 131);
+    padding: 10px 20px;
+}
+
+.js-modal i {
+	color: white;
 }
 
 #title-modal {
