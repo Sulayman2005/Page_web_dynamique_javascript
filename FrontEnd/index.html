@@ -16,21 +16,19 @@
 	<script src="./js/app.js" defer></script>
 </head>
 <body>
-	<p><a href="#modal1" class="js-modal"><i class="fa-regular 
-		fa-pen-to-square"></i>Modifier
-	</a></p>
 	<aside 
 		id="modal1"
 		class="modal"
 		aria-hidden="true"
 		role="dialog"
 		aria-labelledby="title-modal" 
-		style="display: none">
-
-	<div class="modal-wrapper js-modal-stop">
-		<a class="js-modal-close"><i class="fa-solid fa-xmark"></i></a>
-		<h1 id="title-modal">Galerie Photo</h1>
-	</div></aside>
+		style="display: none"
+	>
+		<div class="modal-wrapper">
+			<h1 id="title-modal">Galerie Photo</h1>
+			<button class="close-modal" aria-label="Fermer la modale">×</button>
+		</div>
+	</aside>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
 	<nav>
@@ -61,7 +59,11 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<h2>Mes Projets<p>
+			<a href="#modal1" class="js-modal">
+				<i class="fa-regular fa-pen-to-square"></i> Modifier
+			</a>
+		</p></h2>
 		<div class="filters">
 			<div class="tous">Tous</div>
 		</div>

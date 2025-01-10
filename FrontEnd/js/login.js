@@ -26,8 +26,9 @@ document.getElementById("login_form").addEventListener("submit", async function 
                 errorDiv.textContent = "Une erreur est survenue veuillez résayer";
             }
         } else {
-            const data = await response.json();
-            console.log("Connexion réussie :", data);
+            let result = await response.json();
+            const token = result.token;
+            sessionStorage.setItem("authToken", token);
             window.location.href = "index.html";
         }    
     } catch (error) {

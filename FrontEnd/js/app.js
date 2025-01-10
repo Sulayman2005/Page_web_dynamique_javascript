@@ -1,3 +1,5 @@
+const url = "http://localhost:5678/api";
+
 // Fonction pour récupérer les données des travaux (works) depuis l'API
 async function getWorks(filter) {
     document.querySelector(".gallery").innerHTML = '';
@@ -86,82 +88,66 @@ function setFilter(data) {
 document.querySelector(".tous").addEventListener("click", () => getWorks());
 
 
-//MODAL
+// MODAL //
 
-let modal = null
-const focusableSelector = 'button, a, input, textarea';
-let focusables = [];
-let previouslyFocusdElment = null
+function displayEditMode() {
+    if (sessionStorage.getItem("authToken")) {
+        const editBanner = document.createElement("div");
+        editBanner.classList.add("edit"); 
+        editBanner.innerHTML = `
+            <p>
+                <a href="#modal1" class="js-modal">
+                    <i class="fa-regular fa-pen-to-square"></i> Mode édition
+                </a>    
+            </p>`;    
+        document.body.prepend(editBanner);     
+    }    
+}    
 
-const openModal = async function(e) {
-    e.preventDefault()
-    const target = e.target.getAttribute('href')
-    modal = document.querySelector(e.target.getAttribute('href'));
-    focusables = Array.from(modal.querySelectorAll(focusableSelector));
-    previouslyFocusdElment = document.querySelector(':focus');
-    modal.style.display = null;
-    focusables[0].focus()
-    modal.setAttribute('aria-hidden', 'true');
-    modal.setAttribute('aria-modal', 'true');
-    modal.addEventListener('click', closeModal);
-    modal.querySelector('.js-modal-close').addEventListener('click', closeModal);
-    modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation);
-}
 
-const closeModal = function (e) {
-    if (modal === null) return
-    if (previouslyFocusdElment !== null) previouslyFocusdElment.focus();
+
+ // OPEN MODAL //
+const openModal = function (e) {
     e.preventDefault();
-    modal.style.display = "none";
-    modal.setAttribute('aria-hidden', 'true');
-    modal.removeAttribute('aria-modal', 'true');
-    modal.removeEventListener('click', closeModal);
-    modal.querySelector('.js-modal-close').removeEventListener('click', closeModal);
-    modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation);
-    modal = null;
-}
-
-const stopPropagation = function (e) {
-    e.stopPropagation();
-}
-
-const focusInModal = function (e) {
-    e.preventDefault();
-    let index = focusables.findIndex(modal.querySelector(':focus'));
-    if (e.shiftKey === true) {
-        index--
-    } else {
-        index++
+    const href = e.target.closest("a").getAttribute("href");
+    const target = document.querySelector(href); 
+    if (target) {
+        target.style.display = "flex";
+        target.setAttribute("aria-hidden", "false");
+        target.setAttribute("aria-modal", "true");
     }
-    if (index >= focusables.lenght) {
-        index = 0
-    }
-    if (index < 0) {
-        index = focusables.lenght - 1
-    }
-    focusables[index].focus()
-}
+};
 
-const loadModal = async function (url) {
-    const target = '#' + url.split('#')[1]
-    const html = await fetch(url).then(response => response.text())
-    const element = document.createRange().createContextualFragment(html).querySelector(target)
-    if (element === null) throw `L'element ${target} n'a pas été trouvé dans la page`
-    console.log(fragment, target)
-    document.body.append(element)
-    return element
-}
 
-document.querySelectorAll('.js-modal').forEach(a => {
-    a.addEventListener('click', openModal)
+// CLOSE MODAL //
+const closeModal = function () {
+    const modal = document.querySelector(".modal");
+    if (modal) {
+        modal.style.display = "none";
+        modal.setAttribute("aria-hidden", "true");
+        modal.removeAttribute("aria-modal");
+    }
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+    displayEditMode();
+
+
+    document.querySelectorAll(".js-modal").forEach((a) => {
+        a.addEventListener("click", openModal);
+    });
+
+
+    document.querySelectorAll(".close-modal").forEach((btn) => {
+        btn.addEventListener("click", closeModal);
+    });
+
+
+    window.addEventListener("click", (e) => {
+        const modal = document.querySelector(".modal");
+        const modalWrapper = document.querySelector(".modal-wrapper");
+        if (e.target === modal && !modalWrapper.contains(e.target)) {
+            closeModal();
+        }
+    });
 });
-
-window.addEventListener('keydown', function(e) {
-    if(e.key === "Escape" || e.key === "Esc") {
-        closeModal(e);
-    }
-    if(e.key === 'Tab' && modal !== null) {
-        focusInModal(e);
-    }
-});
-
