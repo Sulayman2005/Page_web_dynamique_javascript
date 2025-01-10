@@ -110,13 +110,14 @@ header {
 }
 
 .close-modal {
-	background-color: white;
-	border: none;
-	width: 24px;
-	height: 24px;
-	font-size: 24px;
-	display: flex;
-	justify-content: flex-end;
+    background-color: white; /* Couleur de fond blanche */
+    border: none; /* Pas de bordure */
+    font-size: 24px; /* Taille de la flèche */
+    width: 24px;
+    height: 24px;
+	position: absolute;
+	margin-left: 25rem;
+    cursor: pointer; /* Changement du curseur au survol */
 }
 
 #title-modal {
@@ -132,6 +133,26 @@ header {
 	text-underline-position: from-font;
 	text-decoration-skip-ink: none;
 	margin: 2rem;
+}
+
+.modal-button-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 27rem;
+}
+
+.add-photo-button {
+	border-radius: 50px;
+	font-size: 14px;
+	width: 237px;
+	height: 36px;
+	top: 1267px;
+	left: 600px;
+	border-radius: 60px 60px 60px 60px;
+	background: #1D6154;
+	color: white;
+	cursor: pointer;
 }
 
 section {

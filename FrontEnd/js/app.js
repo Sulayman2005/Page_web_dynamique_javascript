@@ -151,3 +151,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+
+function displayEditicone() {
+    if (sessionStorage.getItem("authToken")) {
+        const iconeModal = document.querySelector(".gallery_modal");
+        const editIcone = document.createElement("div");
+        editIcone.classList.add("icone_image"); 
+        editIcone.innerHTML = ``;    
+        document.body.prepend(editIcone);     
+    }    
+}
+
