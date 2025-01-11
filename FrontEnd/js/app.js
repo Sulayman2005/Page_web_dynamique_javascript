@@ -162,3 +162,43 @@ function displayEditicone() {
     }    
 }
 
+async function loadModalGallery() {
+    const modalGallery = document.querySelector(".gallery_modal");
+    modalGallery.innerHTML = ''; // Vide la galerie avant de charger
+    const url = "http://localhost:5678/api/works";
+
+    try {
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`Erreur : ${response.status}`);
+        const works = await response.json();
+
+        works.forEach((work) => {
+            const img = document.createElement("img");
+            img.src = work.imageUrl;
+            img.alt = work.title;
+            modalGallery.appendChild(img);
+        });
+    } catch (error) {
+        console.error("Erreur lors du chargement des images :", error.message);
+    }
+}
+
+// Ouvrir la modale et charger la galerie
+document.querySelector(".js-modal").addEventListener("click", (e) => {
+    e.preventDefault();
+    const modal = document.querySelector("#modal1");
+    modal.style.display = "flex";
+    modal.setAttribute("aria-hidden", "false");
+    modal.setAttribute("aria-modal", "true");
+
+    loadModalGallery(); // Charger les images
+});
+
+// Fermer la modale
+document.querySelector(".close-modal").addEventListener("click", () => {
+    const modal = document.querySelector("#modal1");
+    modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+    modal.removeAttribute("aria-modal");
+});
+

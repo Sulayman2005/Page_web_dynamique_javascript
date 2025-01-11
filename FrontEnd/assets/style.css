@@ -120,6 +120,17 @@ header {
     cursor: pointer; /* Changement du curseur au survol */
 }
 
+.gallery_modal img {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+	align-items: center;
+	margin-right: 2rem;
+}
+
 #title-modal {
 	color: #000000;
 	display: flex;
@@ -139,7 +150,6 @@ header {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-top: 27rem;
 }
 
 .add-photo-button {
@@ -147,8 +157,6 @@ header {
 	font-size: 14px;
 	width: 237px;
 	height: 36px;
-	top: 1267px;
-	left: 600px;
 	border-radius: 60px 60px 60px 60px;
 	background: #1D6154;
 	color: white;
