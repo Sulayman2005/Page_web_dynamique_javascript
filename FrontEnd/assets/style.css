@@ -188,13 +188,6 @@ header {
 	cursor: pointer;
 }
 
-#modal1 {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	margin-right: 25rem;
-}
-
 section {
 	margin: 50px 0
 }
@@ -234,7 +227,13 @@ a {
 .js-modal {
 	color: black;
 	font-size: 10px;
-	margin-left: 2rem;
+}
+
+#portfolio p {
+	text-align: center;
+	margin: auto;
+	margin-bottom: -1.5rem;
+	margin-left: 18rem;
 }
 
 nav ul {
