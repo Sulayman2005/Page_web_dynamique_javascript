@@ -88,10 +88,12 @@ function setFilter(data) {
 document.querySelector(".tous").addEventListener("click", () => getWorks());
 
 
-// MODAL //
+// utilisateur connecter//
 
 function displayEditMode() {
     if (sessionStorage.getItem("authToken")) {
+        document.querySelector(".filters").style.display = "none";
+        document.querySelector(".js-modal-2").style.display = "block";
         const editBanner = document.createElement("div");
         editBanner.classList.add("edit"); 
         editBanner.innerHTML = `
@@ -101,10 +103,12 @@ function displayEditMode() {
                 </a>    
             </p>`;    
         document.body.prepend(editBanner);     
+        document.querySelector(".login_link").textContent = "logout";
+        document.querySelector(".login_link").addEventListener("click", () => {
+            sessionStorage.removeItem("authToken");
+        });
     }    
 }    
-
-
 
  // OPEN MODAL //
 const openModal = function (e) {
@@ -117,7 +121,6 @@ const openModal = function (e) {
         target.setAttribute("aria-modal", "true");
     }
 };
-
 
 // CLOSE MODAL //
 const closeModal = function () {
@@ -152,16 +155,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 
-function displayEditicone() {
-    if (sessionStorage.getItem("authToken")) {
-        const iconeModal = document.querySelector(".gallery_modal");
-        const editIcone = document.createElement("div");
-        editIcone.classList.add("icone_image"); 
-        editIcone.innerHTML = ``;    
-        document.body.prepend(editIcone);     
-    }    
-}
-
 async function loadModalGallery() {
     const modalGallery = document.querySelector(".gallery_modal");
     modalGallery.innerHTML = ''; // Vide la galerie avant de charger
@@ -173,10 +166,21 @@ async function loadModalGallery() {
         const works = await response.json();
 
         works.forEach((work) => {
+            const imageContainer = document.createElement("div");
+            imageContainer.classList.add("image-container");
+
             const img = document.createElement("img");
             img.src = work.imageUrl;
             img.alt = work.title;
-            modalGallery.appendChild(img);
+
+            const iconTrash = document.createElement("i");
+            iconTrash.classList.add("fa-solid", "fa-trash-can", "icon-trash");
+            iconTrash.setAttribute("data-id", work.id);
+
+            imageContainer.appendChild(img);
+            imageContainer.appendChild(iconTrash);
+
+            modalGallery.appendChild(imageContainer);
         });
     } catch (error) {
         console.error("Erreur lors du chargement des images :", error.message);
@@ -184,14 +188,20 @@ async function loadModalGallery() {
 }
 
 // Ouvrir la modale et charger la galerie
-document.querySelector(".js-modal").addEventListener("click", (e) => {
-    e.preventDefault();
-    const modal = document.querySelector("#modal1");
-    modal.style.display = "flex";
-    modal.setAttribute("aria-hidden", "false");
-    modal.setAttribute("aria-modal", "true");
+document.addEventListener("click", (e) => {
+    // Vérifie si l'élément cliqué a la classe .js-modal
+    if (e.target.closest(".js-modal")) {
+        e.preventDefault();
 
-    loadModalGallery(); // Charger les images
+        // Afficher la modale
+        const modal = document.querySelector("#modal1");
+        modal.style.display = "flex";
+        modal.setAttribute("aria-hidden", "false");
+        modal.setAttribute("aria-modal", "true");
+
+        // Charger et afficher les images dans la galerie
+        loadModalGallery();
+    }
 });
 
 // Fermer la modale
@@ -201,4 +211,3 @@ document.querySelector(".close-modal").addEventListener("click", () => {
     modal.setAttribute("aria-hidden", "true");
     modal.removeAttribute("aria-modal");
 });
-

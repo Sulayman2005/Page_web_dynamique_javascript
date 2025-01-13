@@ -100,8 +100,8 @@ header {
 
 .modal-wrapper {
 	background-color: #FFFFFF;
-	width: 433px;
-	height: 588px;
+	width: 530px;
+	height: 688px;
 	border-radius: 10px;
 	padding: 20px;
 	max-width: calc(100vh - 20px);
@@ -116,19 +116,20 @@ header {
     width: 24px;
     height: 24px;
 	position: absolute;
-	margin-left: 25rem;
+	margin-left: 30rem;
     cursor: pointer; /* Changement du curseur au survol */
 }
 
 .gallery_modal img {
-    width: 100px;
-    height: 100px;
-    margin: 5px;
+	width: 120.86px;
+	height: 120.57px;
+	top: 796px;
+	left: 510px;
+	margin: 2px;
     object-fit: cover;
     border-radius: 5px;
     border: 1px solid #ccc;
 	align-items: center;
-	margin-right: 2rem;
 }
 
 #title-modal {
@@ -146,10 +147,34 @@ header {
 	margin: 2rem;
 }
 
+.image-container {
+    position: relative;
+    display: inline-block;
+    margin: 10px;
+}
+
+.image-container img {
+    width: 100px;
+    height: auto;
+    border-radius: 8px;
+}
+
+.icon-trash {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 16px;
+    color: white; /* Couleur de l'icône */
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 5px;
+}
+
 .modal-button-container {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	margin-top: 2rem;
 }
 
 .add-photo-button {
@@ -161,6 +186,13 @@ header {
 	background: #1D6154;
 	color: white;
 	cursor: pointer;
+}
+
+#modal1 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-right: 25rem;
 }
 
 section {
