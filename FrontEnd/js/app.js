@@ -154,7 +154,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-
+/**
+ * la fonction loadmodal..
+ */
 async function loadModalGallery() {
     const modalGallery = document.querySelector(".gallery_modal");
     modalGallery.innerHTML = ''; // Vide la galerie avant de charger
@@ -204,6 +206,11 @@ document.addEventListener("click", (e) => {
     }
 });
 
+/**
+ * cette fonct
+ * @param {int} imageId 
+ */
+
 async function deleteImage(imageId) {
     const url = `http://localhost:5678/api/works/${imageId}`;
 
@@ -240,3 +247,10 @@ function deleteImagetrash(e) {
 }
 
 document.querySelector(".gallery_modal").addEventListener("click", deleteImagetrash);
+
+
+const addPhotoButton = document.querySelector(".add-photo-button");
+const galleryModal = document.querySelector(".gallery_modal");
+const addModal = document.querySelector(".add-modal");
+const modalBackButton = document.querySelector(".js-modal-back");
+const modalCloseButton = document.querySelector(".js-modal-close");
