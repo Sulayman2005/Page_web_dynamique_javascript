@@ -249,8 +249,56 @@ function deleteImagetrash(e) {
 document.querySelector(".gallery_modal").addEventListener("click", deleteImagetrash);
 
 
-const addPhotoButton = document.querySelector(".add-photo-button");
+// Sélection des éléments nécessaires
 const galleryModal = document.querySelector(".gallery_modal");
 const addModal = document.querySelector(".add-modal");
 const modalBackButton = document.querySelector(".js-modal-back");
-const modalCloseButton = document.querySelector(".js-modal-close");
+const modalCloseButton = document.querySelector(".close-modal");
+const addPhotoButton = document.querySelector(".add-photo-button");
+
+// Ouvrir la modale d'ajout
+addPhotoButton.addEventListener("click", () => {
+    addModal.style.display = "block"; // Affiche la modale d'ajout
+    document.querySelector("#modal1 .modal-wrapper").style.display = "none"; // Masque la galerie
+});
+
+// Retourner à la galerie
+modalBackButton.addEventListener("click", () => {
+    addModal.style.display = "none"; // Masque la modale d'ajout
+    document.querySelector("#modal1 .modal-wrapper").style.display = "block"; // Réaffiche la galerie
+});
+
+// Fermer complètement la modale
+modalCloseButton.addEventListener("click", () => {
+    const modal = document.querySelector("#modal1");
+    modal.style.display = "none";
+    modal.setAttribute("aria-hidden", "true");
+    modal.removeAttribute("aria-modal");
+});
+
+// Soumettre un fichier avec FormData
+addModal.addEventListener("submit", async (e) => {
+    e.preventDefault(); // Empêche le rechargement de la page
+
+    const formData = new FormData(e.target); // Récupère les données du formulaire
+    const avatarInput = document.querySelector("#avatar");
+    formData.append("avatar", avatarInput.files[0]); // Ajoute le fichier sélectionné
+
+    try {
+        const response = await fetch("http://localhost:5678/api/works", {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
+            },
+            body: formData,
+        });
+
+        if (!response.ok) throw new Error(`Erreur : ${response.status}`);
+
+        console.log("Image ajoutée avec succès !");
+        modalBackButton.click(); // Retourner à la galerie après succès
+    } catch (error) {
+        console.error("Erreur lors de l'ajout de la photo :", error.message);
+    }
+});
+

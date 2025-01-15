@@ -224,10 +224,136 @@ a {
     text-decoration: none;
 }
 
+
+#category {
+	background-color: #FFFFFF;
+	font-size: 18px;
+	height: 35px;
+	margin-top: 1rem;
+	margin-left: 2rem;
+	padding: 10px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	width: 440px;
+	border-radius: 3px 0px 0px 0px;
+}
+
 .js-modal {
 	color: black;
 	font-size: 10px;
 }
+
+.js-modal-back {
+	border: none;
+	background-color: #FFFFFF;
+    font-size: 24px; /* Taille de la flèche */
+    width: 24px;
+    height: 24px;
+    cursor: pointer; 
+}
+
+.add-modal {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+    background-color: #FFFFFF;
+	width: 530px;
+	height: 688px;
+	border-radius: 10px;
+	padding: 20px;
+	max-width: calc(100vh - 20px);
+	max-height: calc(100vh - 20px);
+	overflow: auto;
+}
+
+.add-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.title_modal2 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 2rem;
+	font-size: 24px;
+}
+
+.add-modal label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.file_image {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 2rem;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+	width: 420px;
+	height: 169px;
+	gap: 0px;
+	border-radius: 3px 0px 0px 0px;
+	opacity: 0px;
+	background: #E8F1F6;
+}
+
+#title {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.title_image {
+	display: flex;
+	margin-left: 2rem;
+	margin-top: 2rem;
+}
+
+.add-modal input {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 1rem;
+	margin-left: 2rem;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+	width: 420px;
+	border-radius: 3px 0px 0px 0px;
+}
+
+.barre {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 410px;
+	border: 1px 0px 0px 0px;
+}
+
+.submit-photo-button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 9rem;
+    background-color: #1d6154;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+	font-size: 14px;
+	border-radius: 60px 60px 60px 60px;
+	width: 237px;
+	height: 36px;
+}
+
+.submit-photo-button:hover {
+    background-color: #14533d;
+}
+
 
 #portfolio p {
 	text-align: center;

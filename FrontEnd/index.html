@@ -40,10 +40,26 @@
             <button class="js-modal-back">
               <i class="fa-solid fa-arrow-left"></i>
             </button>
-            <button class="js-modal-close">
+            <button class="close-modal">
               <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
+		  <form id="add-photo-form">
+			<label class="title_modal2" for="title">Ajout photo</label>
+			<label for="avatar"></label>
+			<input  class="file_image"type="file" id="avatar" name="avatar" required>
+			<label class="title_image">Titre</label>
+			<input type="text" id="title" name="title" placeholder="Entrez le titre de l'image" required>
+			
+			<label class="title_image" for="category">Catégorie</label>
+			<select class="file-image" id="category" name="category" required>
+				<option value="1">objets</option>
+				<option value="2">Appartements</option>
+				<option value="3">Hôtels & restaurants</option>
+			</select>
+			<hr class="barre"/>
+			<button type="submit" class="submit-photo-button">Valider</button>
+		</form>
 		</div>
 	</aside>
 <header>
