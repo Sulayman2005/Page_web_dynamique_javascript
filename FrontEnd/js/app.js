@@ -276,24 +276,23 @@ modalCloseButton.addEventListener("click", () => {
     modal.removeAttribute("aria-modal");
 });
 
+
 // Soumettre un fichier avec FormData
 addModal.addEventListener("submit", async (e) => {
     e.preventDefault(); // Empêche le rechargement de la page
 
     const formData = new FormData(e.target); // Récupère les données du formulaire
     const avatarInput = document.querySelector("#avatar");
-    formData.append("avatar", avatarInput.files[0]); // Ajoute le fichier sélectionné
+    formData.append("avatar", avatarInput.files[0]);// Ajoute le fichier sélectionné
 
     try {
         const response = await fetch("http://localhost:5678/api/works", {
             method: "POST",
             headers: {
-                Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
+                Authorization: "Bearer " + token,
             },
             body: formData,
         });
-
-        if (!response.ok) throw new Error(`Erreur : ${response.status}`);
 
         console.log("Image ajoutée avec succès !");
         modalBackButton.click(); // Retourner à la galerie après succès

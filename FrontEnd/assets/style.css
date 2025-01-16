@@ -226,16 +226,16 @@ a {
 
 
 #category {
-	background-color: #FFFFFF;
-	font-size: 18px;
-	height: 35px;
-	margin-top: 1rem;
-	margin-left: 2rem;
-	padding: 10px;
-	font-size: 14px;
-	border: 1px solid #ccc;
-	width: 440px;
-	border-radius: 3px 0px 0px 0px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 2.2rem;
+	width: 438px;
+	height: 51px;
+	top: 1011px;
+	left: 510px;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 14px 0px #00000017;
 }
 
 .js-modal {
@@ -289,15 +289,15 @@ a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	width: 420px;
+	height: 169px;
+	top: 786px;
+	left: 510px;
+	border-radius: 3px 0px 0px 0px;
 	margin-left: 2rem;
     padding: 10px;
     font-size: 14px;
     border: 1px solid #ccc;
-	width: 420px;
-	height: 169px;
-	gap: 0px;
-	border-radius: 3px 0px 0px 0px;
-	opacity: 0px;
 	background: #E8F1F6;
 }
 
@@ -305,6 +305,16 @@ a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 2.2rem;
+	width: 430px;
+	height: 51px;
+	top: 1011px;
+	left: 510px;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 14px 0px #00000017;
 }
 
 .title_image {
@@ -313,25 +323,22 @@ a {
 	margin-top: 2rem;
 }
 
-.add-modal input {
+.text_title {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-top: 1rem;
-	margin-left: 2rem;
-    padding: 10px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-	width: 420px;
-	border-radius: 3px 0px 0px 0px;
+	margin-left: 2.2rem;
+	width: 432px;
+	height: 51px;
+	top: 1011px;
+	left: 510px;
+	background: #FFFFFF;
+	box-shadow: 0px 4px 14px 0px #00000017;
 }
 
 .barre {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 410px;
-	border: 1px 0px 0px 0px;
+	width: 436px;
+	margin-left: 2.3rem;
 }
 
 .submit-photo-button {

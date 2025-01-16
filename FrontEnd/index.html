@@ -49,10 +49,11 @@
 			<label for="avatar"></label>
 			<input  class="file_image"type="file" id="avatar" name="avatar" required>
 			<label class="title_image">Titre</label>
-			<input type="text" id="title" name="title" placeholder="Entrez le titre de l'image" required>
+			<input type="text" id="title" name="title" required>
 			
 			<label class="title_image" for="category">Catégorie</label>
 			<select class="file-image" id="category" name="category" required>
+				<option style="display: none" value=""></option>
 				<option value="1">objets</option>
 				<option value="2">Appartements</option>
 				<option value="3">Hôtels & restaurants</option>
