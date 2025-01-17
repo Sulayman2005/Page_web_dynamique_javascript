@@ -277,6 +277,7 @@ a {
 	align-items: center;
 	justify-content: center;
 	margin-top: 2rem;
+	margin-left: -1.8rem;
 	font-size: 24px;
 }
 
@@ -292,13 +293,13 @@ a {
 	flex-direction: column;
 	gap: 20px;
 	text-align: center;
-	width: 420px;
+	width: 435px;
 	height: 169px;
 	top: 786px;
 	left: 510px;
 	border-radius: 3px 0px 0px 0px;
 	margin-left: 2rem;
-    padding: 10px;
+	margin-top: 2rem;
     font-size: 14px;
     border: 1px solid #ccc;
 	background: #E8F1F6;
@@ -306,16 +307,17 @@ a {
 
 .fa-image {
 	font-size: 67px;
-	color: grey;
+	color: #B9C5CC;
 }
 
 .button_insert {
-	text-align: center;
-	z-index: 0;
 	width: 173px;
 	height: 36px;
 	border-radius: 50px 50px 50px 50px;
-	animation-duration: 0ms;
+	z-index: 0;
+	background: #B9C5CC;
+	color: #306685;
+	border: none;
 }
 
 .insert_image {
@@ -324,6 +326,16 @@ a {
 
 .text_insert {
 	z-index: 1;
+	width: 94px;
+	height: 3px;
+	font-family: Work Sans;
+	font-size: 9px;
+	font-weight: 400;
+	margin-top: -1rem;
+	line-height: 11.73px;
+	text-align: center;
+	text-underline-position: from-font;
+	text-decoration-skip-ink: none;
 }
 
 #title {
@@ -333,7 +345,7 @@ a {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-left: 2.2rem;
+	margin-left: 2rem;
 	width: 430px;
 	height: 51px;
 	top: 1011px;
@@ -368,13 +380,14 @@ a {
 .barre {
 	width: 436px;
 	margin-left: 2.3rem;
+	margin-top: 3rem;
 }
 
 .submit-photo-button {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	margin-left: 9rem;
+	margin-left: 8.5rem;
     background-color: #1d6154;
     color: white;
     border: none;

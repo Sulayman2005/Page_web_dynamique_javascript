@@ -255,7 +255,7 @@ const addModal = document.querySelector(".add-modal");
 const modalBackButton = document.querySelector(".js-modal-back");
 const modalCloseButton = document.querySelector(".close-modal");
 const addPhotoButton = document.querySelector(".add-photo-button");
-const buttoninsert = document.querySelector(".button_insert");
+const addPhotoForm = document.getElementById("add-photo-form");
 
 // Ouvrir la modale d'ajout
 addPhotoButton.addEventListener("click", () => {
@@ -277,26 +277,60 @@ modalCloseButton.addEventListener("click", () => {
     modal.removeAttribute("aria-modal");
 });
 
+// Sélection des éléments nécessaires
+const fileInput = document.getElementById("file");
+const imagePreview = document.getElementById("image-preview");
+const previewIcon = document.getElementById("preview-icon");
+const triggerFileButton = document.getElementById("trigger-file");
 
-addPhotoButton.addEventListener("submit", async(e) => {
-    e.preventDefault();
+// Ouvrir l'explorateur de fichiers lorsque l'utilisateur clique sur "+ Ajouter une photo"
+triggerFileButton.addEventListener("click", () => {
+    fileInput.click(); // Déclenche l'ouverture de l'explorateur de fichiers
+});
 
-    const formData = new FormData(addPhotoButton);
+addPhotoForm.addEventListener("submit", async (e) => {
+    e.preventDefault(); // Empêche le rechargement de la page
 
-    const fileInput = document.getElementById("#avatar");
-    const file = fileInput.files[0];
-
-    formData.append("avatar", file);
+    const formData = new FormData(addPhotoForm); // Récupérer les données du formulaire
 
     try {
         const response = await fetch("http://localhost:5678/api/works", {
             method: "POST",
             headers: {
-                "Content-Type": "multipart/form-data",
+                Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
             },
-            body: formData,
+            body: formData, // Envoi des données multipart/form-data
         });
+
+        const newImage = await response.json();
+        console.log("Image ajoutée avec succès :", newImage);
+
+        // Ajouter l'image à la galerie (page d'accueil)
+        ajouterImageGalerie(newImage);
+
+        // Réinitialiser le formulaire après succès
+        addPhotoForm.reset();
+
+        // Retourner à la galerie
+        modalBackButton.click();
     } catch (error) {
-        console.error("Erreur lors de la suppression de l'image :", error.message);
+        console.error("Erreur lors de l'ajout de la photo :", error.message);
+        alert(`Erreur : ${error.message}`);
     }
-})
+});
+
+// Fonction pour ajouter une image dans la galerie
+function ajouterImageGalerie(imageData) {
+    const gallery = document.querySelector(".gallery"); // Sélectionner la galerie
+    const figure = document.createElement("figure");
+    const img = document.createElement("img");
+    const caption = document.createElement("figcaption");
+
+    img.src = imageData.url; // URL de l'image renvoyée par l'API
+    img.alt = imageData.title; // Alt basé sur le titre
+    caption.textContent = imageData.title;
+
+    figure.appendChild(img);
+    figure.appendChild(caption);
+    gallery.appendChild(figure); // Ajouter l'image à la galerie
+}

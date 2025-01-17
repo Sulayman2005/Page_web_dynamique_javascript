@@ -44,29 +44,28 @@
               <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
-		  <form id="add-photo-form" method=POST enctype=multipart/form-data>
+		  <form id="add-photo-form" method="POST" enctype="multipart/form-data">
 			<label class="title_modal2" for="title">Ajout photo</label>
-			<label for="avatar">
-			</label>
+		
 			<label class="file_image">
-				<i class="fa-regular fa-image picture-loaded"></i>
-				<button class="button_insert">
-					+ Ajouter une photo
-					<input class="insert_image" type="file" id="file" name="file" accept="image/png, image/jpeg">
-				</button>
-				<p class="text_insert">jpg, png: 4mo Max</p>
+				<i class="fa-regular fa-image picture-loaded" id="preview-icon"></i>
+				<img id="image-preview" style="display: none; max-width: 100%; max-height: 200px;"/>
+				<button class="button_insert" type="button" id="trigger-file">+ Ajouter une photo</button>
+				<p class="text_insert">jpg, png : 4 Mo max</p>
+				<input class="insert_image" type="file" id="file" name="file" accept="image/png, image/jpeg" style="display: none;" required>
 			</label>
-			<label class="title_image">Titre</label>
-			<input type="text" id="title" name="title" required>
-			
+		
+			<label class="title_image" for="title">Titre</label>
+			<input type="text" id="title" name="title" placeholder="" maxlength="100" required>
+		
 			<label class="title_image" for="category">Catégorie</label>
 			<select class="file-image" id="category" name="category" required>
-				<option style="display: none" value=""></option>
-				<option value="1">objets</option>
+				<option style="display: none" value="" disabled selected></option>
+				<option value="1">Objets</option>
 				<option value="2">Appartements</option>
 				<option value="3">Hôtels & restaurants</option>
 			</select>
-			<hr class="barre"/>
+			<hr class="barre" />
 			<button type="submit" class="submit-photo-button">Valider</button>
 		</form>
 		</div>
