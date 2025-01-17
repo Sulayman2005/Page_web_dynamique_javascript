@@ -255,6 +255,7 @@ const addModal = document.querySelector(".add-modal");
 const modalBackButton = document.querySelector(".js-modal-back");
 const modalCloseButton = document.querySelector(".close-modal");
 const addPhotoButton = document.querySelector(".add-photo-button");
+const buttoninsert = document.querySelector(".button_insert");
 
 // Ouvrir la modale d'ajout
 addPhotoButton.addEventListener("click", () => {
@@ -277,109 +278,25 @@ modalCloseButton.addEventListener("click", () => {
 });
 
 
-// Soumettre un fichier avec FormData
-addModal.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Empêche le rechargement de la page
+addPhotoButton.addEventListener("submit", async(e) => {
+    e.preventDefault();
 
-    const formData = new FormData(e.target); // Récupère les données du formulaire
-    const avatarInput = document.querySelector("#avatar");
-    formData.append("avatar", avatarInput.files[0]);// Ajoute le fichier sélectionné
+    const formData = new FormData(addPhotoButton);
+
+    const fileInput = document.getElementById("#avatar");
+    const file = fileInput.files[0];
+
+    formData.append("avatar", file);
 
     try {
         const response = await fetch("http://localhost:5678/api/works", {
             method: "POST",
             headers: {
-                Authorization: "Bearer " + token,
+                "Content-Type": "multipart/form-data",
             },
             body: formData,
         });
-
-        console.log("Image ajoutée avec succès !");
-        modalBackButton.click(); // Retourner à la galerie après succès
     } catch (error) {
-        console.error("Erreur lors de l'ajout de la photo :", error.message);
+        console.error("Erreur lors de la suppression de l'image :", error.message);
     }
-});
-
-function handlePictureSubmit() {
-    const img = document.createElement("img");
-    const fileInput = document.getElementById("file");
-    let file; // On ajoutera dans cette variable la photo qui a été uploadée.
-    fileInput.style.display = "none";
-    fileInput.addEventListener("change", function (event) {
-      file = event.target.files[0];
-      const maxFileSize = 4 * 1024 * 1024;
-  
-    if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
-        if (file.size > maxFileSize) {
-          alert("La taille de l'image ne doit pas dépasser 4 Mo.");
-          return;
-        }
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          img.src = e.target.result;
-          img.alt = "Uploaded Photo";
-          document.getElementById("avatar").appendChild(img);
-        };
-        // Je converti l'image en une URL de donnees
-        reader.readAsDataURL(file);
-        document
-          .querySelectorAll(".picture-loaded") // Pour enlever ce qui se trouvait avant d'upload l'image
-          .forEach((e) => (e.style.display = "none"));
-      } else {
-        alert("Veuillez sélectionner une image au format JPG ou PNG.");
-      }
-    });
-
-    const titleInput = document.getElementById("title");
-        let titleValue = "";
-        let selectedValue = "1";
-
-        document.getElementById("category").addEventListener("change", function () {
-            selectedValue = this.value;
-        });
-
-        titleInput.addEventListener("input", function () {
-            titleValue = titleInput.value;
-        });
-
-        const addPictureForm = document.getElementById("picture-form");
-
-    addPictureForm.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const hasImage = document.querySelector("#avatar").firstChild;
-        if (hasImage && titleValue) {
-        const formData = new FormData();
-
-        formData.append("image", file);
-        formData.append("title", titleValue);
-        formData.append("category", selectedValue);
-
-        const token = sessionStorage.authToken;
-
-        if (!token) {
-            console.error("Token d'authentification manquant.");
-            return;
-        }
-
-        let response = await fetch(`${url}/works`, {
-            method: "POST",
-            headers: {
-            Authorization: "Bearer " + token,
-            },
-            body: formData,
-        });
-        if (response.status !== 201) {
-            const errorText = await response.text();
-            console.error("Erreur : ", errorText);
-            const errorBox = document.createElement("div");
-            errorBox.className = "error-login";
-            errorBox.innerHTML = `Il y a eu une erreur : ${errorText}`;
-            document.querySelector("form").prepend(errorBox);
-        }
-        } else {
-        alert("Veuillez remplir tous les champs");
-        }
-    });
-}
-
+})

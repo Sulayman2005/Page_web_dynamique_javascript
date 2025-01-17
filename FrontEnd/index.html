@@ -44,14 +44,18 @@
               <i class="fa-solid fa-xmark"></i>
             </button>
           </div>
-		  <form id="add-photo-form">
+		  <form id="add-photo-form" method=POST enctype=multipart/form-data>
 			<label class="title_modal2" for="title">Ajout photo</label>
-			<label for="avatar"></label>
-			<div><i class="fa-regular fa-image picture-loaded"></i></div>
-            <label class="picture-loaded" for="file">+ Ajouter photo</label>
-            <input type="file" id="file" name="file" accept="image/png, image/jpeg" />
-            <p class="picture-loaded">jpg, png : 4mo max</p>
-			<input  class="file_image"type="file" id="avatar" name="avatar" required>
+			<label for="avatar">
+			</label>
+			<label class="file_image">
+				<i class="fa-regular fa-image picture-loaded"></i>
+				<button class="button_insert">
+					+ Ajouter une photo
+					<input class="insert_image" type="file" id="file" name="file" accept="image/png, image/jpeg">
+				</button>
+				<p class="text_insert">jpg, png: 4mo Max</p>
+			</label>
 			<label class="title_image">Titre</label>
 			<input type="text" id="title" name="title" required>
 			

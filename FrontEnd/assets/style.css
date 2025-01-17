@@ -282,13 +282,16 @@ a {
 
 .add-modal label {
     font-weight: bold;
-    margin-bottom: 5px;
+    margin-bottom: -9px;
 }
 
 .file_image {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
+	gap: 20px;
+	text-align: center;
 	width: 420px;
 	height: 169px;
 	top: 786px;
@@ -299,6 +302,28 @@ a {
     font-size: 14px;
     border: 1px solid #ccc;
 	background: #E8F1F6;
+}
+
+.fa-image {
+	font-size: 67px;
+	color: grey;
+}
+
+.button_insert {
+	text-align: center;
+	z-index: 0;
+	width: 173px;
+	height: 36px;
+	border-radius: 50px 50px 50px 50px;
+	animation-duration: 0ms;
+}
+
+.insert_image {
+	opacity: 0;
+}
+
+.text_insert {
+	z-index: 1;
 }
 
 #title {
@@ -315,6 +340,10 @@ a {
 	left: 510px;
 	background: #FFFFFF;
 	box-shadow: 0px 4px 14px 0px #00000017;
+}
+
+.picture-loaded {
+	display: flex;
 }
 
 .title_image {
