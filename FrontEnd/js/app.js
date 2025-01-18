@@ -1,5 +1,3 @@
-const url = "http://localhost:5678/api";
-
 // Fonction pour récupérer les données des travaux (works) depuis l'API
 async function getWorks(filter) {
     document.querySelector(".gallery").innerHTML = '';
@@ -206,13 +204,9 @@ document.addEventListener("click", (e) => {
     }
 });
 
-/**
- * cette fonct
- * @param {int} imageId 
- */
 
 async function deleteImage(imageId) {
-    const url = `http://localhost:5678/api/works/${imageId}`;
+    const url = `http://localhost:5678/api/works/1${imageId}`;
 
     try {
         const response = await fetch(url, {
@@ -240,14 +234,17 @@ function deleteImagetrash(e) {
             if (success) {
                 // Supprime l'élément correspondant dans le DOM
                 const imageContainer = e.target.closest(".image-container");
-                imageContainer.remove();
+                if (imageContainer) {
+                    imageContainer.remove();
+                }
+            } else {
+                alert("La suppresion a echoué, problème dans l'API")
             }
         });
     }
 }
 
 document.querySelector(".gallery_modal").addEventListener("click", deleteImagetrash);
-
 
 // Sélection des éléments nécessaires
 const galleryModal = document.querySelector(".gallery_modal");
@@ -288,49 +285,86 @@ triggerFileButton.addEventListener("click", () => {
     fileInput.click(); // Déclenche l'ouverture de l'explorateur de fichiers
 });
 
-addPhotoForm.addEventListener("submit", async (e) => {
-    e.preventDefault(); // Empêche le rechargement de la page
-
-    const formData = new FormData(addPhotoForm); // Récupérer les données du formulaire
-
-    try {
-        const response = await fetch("http://localhost:5678/api/works", {
-            method: "POST",
-            headers: {
-                Authorization: `Bearer ${sessionStorage.getItem("authToken")}`,
-            },
-            body: formData, // Envoi des données multipart/form-data
-        });
-
-        const newImage = await response.json();
-        console.log("Image ajoutée avec succès :", newImage);
-
-        // Ajouter l'image à la galerie (page d'accueil)
-        ajouterImageGalerie(newImage);
-
-        // Réinitialiser le formulaire après succès
-        addPhotoForm.reset();
-
-        // Retourner à la galerie
-        modalBackButton.click();
-    } catch (error) {
-        console.error("Erreur lors de l'ajout de la photo :", error.message);
-        alert(`Erreur : ${error.message}`);
-    }
-});
-
-// Fonction pour ajouter une image dans la galerie
-function ajouterImageGalerie(imageData) {
-    const gallery = document.querySelector(".gallery"); // Sélectionner la galerie
-    const figure = document.createElement("figure");
+function addimagemodal() {
     const img = document.createElement("img");
-    const caption = document.createElement("figcaption");
-
-    img.src = imageData.url; // URL de l'image renvoyée par l'API
-    img.alt = imageData.title; // Alt basé sur le titre
-    caption.textContent = imageData.title;
-
-    figure.appendChild(img);
-    figure.appendChild(caption);
-    gallery.appendChild(figure); // Ajouter l'image à la galerie
+    const fileInput = document.getElementById("file");
+    let file; // On ajoutera dans cette variable la photo qui a été uploadée.
+    fileInput.style.display = "none";
+    fileInput.addEventListener("change", function (event) {
+      file = event.target.files[0];
+      const maxFileSize = 4 * 1024 * 1024;
+  
+      if (file && (file.type === "image/jpeg" || file.type === "image/png")) {
+        if (file.size > maxFileSize) {
+          alert("La taille de l'image ne doit pas dépasser 4 Mo.");
+          return;
+        }
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          img.src = e.target.result;
+          img.alt = "Uploaded Photo";
+          document.getElementById("photo-container").appendChild(img);
+        };
+        // Je converti l'image en une URL de donnees
+        reader.readAsDataURL(file);
+        document
+          .querySelectorAll(".picture-loaded") // Pour enlever ce qui se trouvait avant d'upload l'image
+          .forEach((e) => (e.style.display = "none"));
+      } else {
+        alert("Veuillez sélectionner une image au format JPG ou PNG.");
+      }
+    });
+  
+    const titleInput = document.getElementById("title");
+    let titleValue = "";
+    let selectedValue = "1";
+  
+    document.getElementById("category").addEventListener("change", function () {
+      selectedValue = this.value;
+    });
+  
+    titleInput.addEventListener("input", function () {
+      titleValue = titleInput.value;
+    });
+  
+    const addPictureForm = document.getElementById("add-photo-form");
+  
+    addPictureForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const hasImage = document.querySelector("#photo-container").firstChild;
+      if (hasImage && titleValue) {
+        const formData = new FormData();
+  
+        formData.append("image", file);
+        formData.append("title", titleValue);
+        formData.append("category", selectedValue);
+  
+        const token = sessionStorage.authToken;
+  
+        if (!token) {
+          console.error("Token d'authentification manquant.");
+          return;
+        }
+  
+        let response = await fetch(`${url}/works`, {
+          method: "POST",
+          headers: {
+            Authorization: "Bearer " + token,
+          },
+          body: formData,
+        });
+        if (response.status !== 201) {
+          const errorText = await response.text();
+          console.error("Erreur : ", errorText);
+          const errorBox = document.createElement("div");
+          errorBox.className = "error-login";
+          errorBox.innerHTML = `Il y a eu une erreur : ${errorText}`;
+          document.querySelector("form").prepend(errorBox);
+        }
+      } else {
+        alert("Veuillez remplir tous les champs");
+      }
+    });
 }
+
+addimagemodal();
