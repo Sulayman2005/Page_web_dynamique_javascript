@@ -206,7 +206,7 @@ document.addEventListener("click", (e) => {
 
 
 async function deleteImage(imageId) {
-    const url = `http://localhost:5678/api/works/1${imageId}`;
+    const url = `http://localhost:5678/api/works${imageId}/`;
 
     try {
         const response = await fetch(url, {
@@ -303,13 +303,15 @@ function addimagemodal() {
         reader.onload = (e) => {
           img.src = e.target.result;
           img.alt = "Uploaded Photo";
+          img.style.width = "129px";
+          img.style.height = "173px";
           document.getElementById("photo-container").appendChild(img);
         };
         // Je converti l'image en une URL de donnees
         reader.readAsDataURL(file);
-        document
-          .querySelectorAll(".picture-loaded") // Pour enlever ce qui se trouvait avant d'upload l'image
-          .forEach((e) => (e.style.display = "none"));
+        document.querySelectorAll(".picture-loaded").forEach((e) => (e.style.display = "none"));
+        document.querySelectorAll(".button_insert").forEach((e) => (e.style.display = "none"));
+        document.querySelectorAll(".text_insert").forEach((e) => (e.style.display = "none"));// enlever tous ce qu'il ya dans la modale après l'ajout de l'image
       } else {
         alert("Veuillez sélectionner une image au format JPG ou PNG.");
       }

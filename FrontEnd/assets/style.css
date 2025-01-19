@@ -117,18 +117,25 @@ header {
     height: 24px;
 	position: absolute;
 	margin-left: 30rem;
+	margin-top: 2rem;
     cursor: pointer; /* Changement du curseur au survol */
 }
 
-.gallery_modal img {
-	width: 120.86px;
-	height: 120.57px;
+.gallery_modal {
+	width: 530px;
+	height: 458px;
 	top: 796px;
 	left: 510px;
 	margin: 2px;
     object-fit: cover;
     border-radius: 5px;
-    border: 1px solid #ccc;
+	align-items: center;
+}
+
+.gallery_modal img {
+	margin: -7px;
+    object-fit: cover;
+    border-radius: 5px;
 	align-items: center;
 }
 
@@ -380,7 +387,6 @@ a {
 .barre {
 	width: 436px;
 	margin-left: 2.3rem;
-	margin-top: 3rem;
 }
 
 .submit-photo-button {
