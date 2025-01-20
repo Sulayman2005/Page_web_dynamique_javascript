@@ -100,8 +100,8 @@ header {
 
 .modal-wrapper {
 	background-color: #FFFFFF;
-	width: 530px;
-	height: 688px;
+	width: 630px;
+	height: 648px;
 	border-radius: 10px;
 	padding: 20px;
 	max-width: calc(100vh - 20px);
@@ -116,20 +116,20 @@ header {
     width: 24px;
     height: 24px;
 	position: absolute;
-	margin-left: 30rem;
-	margin-top: 2rem;
+	margin-left: 36rem;
+	margin-top: 0rem;
     cursor: pointer; /* Changement du curseur au survol */
 }
 
 .gallery_modal {
-	width: 530px;
-	height: 458px;
+	height: 450px;
 	top: 796px;
 	left: 510px;
-	margin: 2px;
+	align-items: center;
+	justify-content: center;
+	margin-left: 3.5rem;
     object-fit: cover;
     border-radius: 5px;
-	align-items: center;
 }
 
 .gallery_modal img {
@@ -152,6 +152,13 @@ header {
 	text-underline-position: from-font;
 	text-decoration-skip-ink: none;
 	margin: 2rem;
+}
+
+.barre_1 {
+	width: 520px;
+	border: 1px 0px 0px 0px;
+	margin-left: 3.5rem;
+	border: 1px solid #B3B3B3
 }
 
 .image-container {
@@ -257,6 +264,18 @@ a {
     width: 24px;
     height: 24px;
     cursor: pointer; 
+}
+
+.close-modal_1 {
+	background-color: white; /* Couleur de fond blanche */
+    border: none; /* Pas de bordure */
+    font-size: 24px; /* Taille de la flèche */
+    width: 24px;
+    height: 24px;
+	position: absolute;
+	margin-left: 30rem;
+	margin-top: 0rem;
+    cursor: pointer;
 }
 
 .add-modal {

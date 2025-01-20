@@ -143,6 +143,10 @@ document.addEventListener("DOMContentLoaded", () => {
         btn.addEventListener("click", closeModal);
     });
 
+    document.querySelectorAll(".close-modal_1").forEach((btn) => {
+        btn.addEventListener("click", closeModal);
+    });
+
 
     window.addEventListener("click", (e) => {
         const modal = document.querySelector(".modal");
@@ -206,17 +210,28 @@ document.addEventListener("click", (e) => {
 
 
 async function deleteImage(imageId) {
-    const url = `http://localhost:5678/api/works${imageId}/`;
+    const token = sessionStorage.authToken;   
 
+    const url = `http://localhost:5678/api/works/${imageId}`;
     try {
         const response = await fetch(url, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`, // Si nécessaire
             },
         });
+
+        if (!response.ok) {
+            // Affiche un message d'erreur selon le code de statut
+            console.error(`Erreur ${response.status} : ${response.statusText}`);
+            return false;
+        }
+
+        console.log("Image supprimée avec succès !");
+        return true;
     } catch (error) {
-        console.error("Erreur lors de la suppression de l'image :", error.message);
+        console.error("Erreur lors de la suppression :", error.message);
     }
 }
 
@@ -238,7 +253,7 @@ function deleteImagetrash(e) {
                     imageContainer.remove();
                 }
             } else {
-                alert("La suppresion a echoué, problème dans l'API")
+                alert("Problème avec l'API !");
             }
         });
     }
@@ -250,7 +265,7 @@ document.querySelector(".gallery_modal").addEventListener("click", deleteImagetr
 const galleryModal = document.querySelector(".gallery_modal");
 const addModal = document.querySelector(".add-modal");
 const modalBackButton = document.querySelector(".js-modal-back");
-const modalCloseButton = document.querySelector(".close-modal");
+const modalCloseButton = document.querySelector(".close-modal_1");
 const addPhotoButton = document.querySelector(".add-photo-button");
 const addPhotoForm = document.getElementById("add-photo-form");
 
@@ -348,7 +363,7 @@ function addimagemodal() {
           return;
         }
   
-        let response = await fetch(`${url}/works`, {
+        let response = await fetch("http://localhost:5678/api/works", {
           method: "POST",
           headers: {
             Authorization: "Bearer " + token,
