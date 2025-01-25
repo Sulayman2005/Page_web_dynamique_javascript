@@ -12,7 +12,7 @@ async function getWorks(filter) {
         const response = await fetch(url);
 
         /**
-         * Vérifie si la réponse est correcte (code HTTP 200-299)
+         * Vérifie si la réponse est correcte
          */
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
@@ -23,6 +23,9 @@ async function getWorks(filter) {
          */
         const json = await response.json();
         if (filter) {
+            /**
+             * Filtre les projets selon leur `categoryId`
+             *  */
             const filtered = json.filter((data) => data.categoryId === filter);
             for (let i = 0; i < filtered.length; i++) {
                 setFigure(filtered[i]);
@@ -137,4 +140,5 @@ function displayEditMode() {
         });
     }    
 }
+
 

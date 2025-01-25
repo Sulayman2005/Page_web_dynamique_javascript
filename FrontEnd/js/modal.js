@@ -6,9 +6,9 @@ const openModal = function (e) {
     const href = e.target.closest("a").getAttribute("href");
     const target = document.querySelector(href); 
     if (target) {
-        target.style.display = "flex";
-        target.setAttribute("aria-hidden", "false");
-        target.setAttribute("aria-modal", "true");
+        target.style.display = "flex"; /** affiche la modal avec un style flexbox */
+        target.setAttribute("aria-hidden", "false");/** indique que la modal est visible */
+        target.setAttribute("aria-modal", "true");/**Definit la modale active */
     }
 };
 
@@ -18,9 +18,9 @@ const openModal = function (e) {
 const closeModal = function () {
     const modal = document.querySelector(".modal");
     if (modal) {
-        modal.style.display = "none";
-        modal.setAttribute("aria-hidden", "true");
-        modal.removeAttribute("aria-modal");
+        modal.style.display = "none"; /**cache la modale en réinitialisant son style */
+        modal.setAttribute("aria-hidden", "true");/** rend la modal invisble pour les lecteurs */
+        modal.removeAttribute("aria-modal"); /** supprime la modale avec remove */
     }
 };
 
