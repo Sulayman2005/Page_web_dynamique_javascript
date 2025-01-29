@@ -514,9 +514,10 @@ nav a:hover {
 	font-family: 'Syne', sans-serif;
 	padding: 10px 25px 10px 25px;
 }
-.filters div:hover {
-	color: white;
-	background-color: #1D6154;
+
+.filter-active {
+    background-color: #1D6154;
+    color: white !important;
 }
 
 #contact {

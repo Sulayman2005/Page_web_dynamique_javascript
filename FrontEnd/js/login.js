@@ -17,7 +17,6 @@ document.getElementById("login_form").addEventListener("submit", async function 
             },
             body: JSON.stringify({ email, password }),
         });
-        console.log(response);
 
         if(!response.ok) {
             if (response.status === 401) {

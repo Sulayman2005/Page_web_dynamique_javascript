@@ -47,6 +47,7 @@ async function getWorks(filter) {
 getWorks();
 
 
+
 /**
  * Fonction pour créer et ajouter une figure dans la galerie
  */
@@ -87,7 +88,6 @@ async function getCategories() {
          * Convertie la réponse en JSON
          */
         const json = await response.json();
-        console.log(json);
         for (let i = 0; i < json.length; i++) {
             setFilter(json[i]);
         }
@@ -104,16 +104,40 @@ getCategories();
  * la function setFilter permet de filtrer les filtres et de clicker sur le bouton "TOUS"
  * et d'afficher toutes les images 
  */
+// Fonction pour créer et gérer les filtres
 function setFilter(data) {
-    console.log(data);
     const div = document.createElement("div");
-    div.className = data.id;
-    div.addEventListener("click", () => getWorks(data.id));
-    div.innerHTML = `${data.name}`;
+    div.classList.add("filter-button"); // Classe générique pour tous les filtres
+    div.textContent = data.name;
+
+    div.addEventListener("click", () => {
+        // Retire la classe 'filter-active' de TOUS les boutons (y compris "Tous")
+        document.querySelectorAll(".filter-button, .tous").forEach(button => button.classList.remove("filter-active"));
+
+        // Ajoute la classe uniquement au bouton sélectionné
+        div.classList.add("filter-active");
+
+        // Charge les travaux filtrés
+        getWorks(data.id);
+    });
+
     document.querySelector(".filters").append(div);
 }
 
-document.querySelector(".tous").addEventListener("click", () => getWorks());
+
+const buttontous = document.querySelector(".tous");
+
+// Gère le clic sur "Tous"
+buttontous.addEventListener("click", () => {
+    // Retire la classe 'filter-active' de tous les boutons de filtre
+    document.querySelectorAll(".filter-button, .tous").forEach(button => button.classList.remove("filter-active"));
+
+    // Active seulement le bouton "Tous"
+    buttontous.classList.add("filter-active");
+
+    // Affiche tous les projets
+    getWorks();
+});
 
 
 /**
