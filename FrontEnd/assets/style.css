@@ -413,7 +413,7 @@ a {
 	align-items: center;
 	justify-content: center;
 	margin-left: 8.5rem;
-    background-color: #1d6154;
+    background-color: grey;
     color: white;
     border: none;
     cursor: pointer;
@@ -423,11 +423,6 @@ a {
 	width: 237px;
 	height: 36px;
 }
-
-.submit-photo-button:hover {
-    background-color: #14533d;
-}
-
 
 #portfolio p {
 	text-align: center;

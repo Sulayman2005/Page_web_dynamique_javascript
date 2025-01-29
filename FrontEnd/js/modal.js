@@ -27,27 +27,12 @@ const closeModal = function () {
 document.addEventListener("DOMContentLoaded", () => {
     displayEditMode();
 
-
     document.querySelectorAll(".js-modal").forEach((a) => {
         a.addEventListener("click", openModal);
     });
 
-
     document.querySelectorAll(".close-modal").forEach((btn) => {
         btn.addEventListener("click", closeModal);
-    });
-
-    document.querySelectorAll(".close-modal_1").forEach((btn) => {
-        btn.addEventListener("click", closeModal);
-    });
-
-
-    window.addEventListener("click", (e) => {
-        const modal = document.querySelector(".modal");
-        const modalWrapper = document.querySelector(".modal-wrapper");
-        if (e.target === modal && !modalWrapper.contains(e.target)) {
-            closeModal();
-        }
     });
 });
 /**
@@ -94,14 +79,6 @@ document.addEventListener("click", (e) => {
      */
     if (e.target.closest(".js-modal")) {
         e.preventDefault();
-
-        /**
-         * Afficher la modale
-         */
-        const modal = document.querySelector("#modal1");
-        modal.style.display = "flex";
-        modal.setAttribute("aria-hidden", "false");
-        modal.setAttribute("aria-modal", "true");
 
         /**
          * Charger et afficher les images dans la galerie

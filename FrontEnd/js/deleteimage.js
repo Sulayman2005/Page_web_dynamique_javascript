@@ -25,7 +25,6 @@ async function deleteImage(imageId) {
 
 function deleteImagetrash(e) {
     if (e.target.classList.contains("icon-trash")) {
-        e.preventDefault();
         const imageId = e.target.getAttribute("data-id"); /**
         Récupère l'ID de l'image */
         if (!imageId) return;

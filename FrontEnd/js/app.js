@@ -109,7 +109,6 @@ function setFilter(data) {
     const div = document.createElement("div");
     div.classList.add("filter-button"); // Classe générique pour tous les filtres
     div.textContent = data.name;
-
     div.addEventListener("click", () => {
         // Retire la classe 'filter-active' de TOUS les boutons (y compris "Tous")
         document.querySelectorAll(".filter-button, .tous").forEach(button => button.classList.remove("filter-active"));
