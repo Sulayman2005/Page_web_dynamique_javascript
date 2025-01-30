@@ -86,3 +86,5 @@ document.addEventListener("click", (e) => {
         loadModalGallery();
     }
 });
+
+

@@ -135,7 +135,6 @@ header {
 .gallery_modal img {
 	margin: -7px;
     object-fit: cover;
-    border-radius: 5px;
 	align-items: center;
 }
 
@@ -170,7 +169,6 @@ header {
 .image-container img {
     width: 100px;
     height: auto;
-    border-radius: 8px;
 }
 
 .icon-trash {
@@ -424,11 +422,19 @@ a {
 	height: 36px;
 }
 
+#portfolio {
+	margin-top: 10rem;
+}
+
 #portfolio p {
 	text-align: center;
 	margin: auto;
 	margin-bottom: -1.5rem;
 	margin-left: 18rem;
+}
+
+.gallery {
+	margin-top: 7rem;
 }
 
 nav ul {
