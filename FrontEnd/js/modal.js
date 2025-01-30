@@ -34,6 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll(".close-modal").forEach((btn) => {
         btn.addEventListener("click", closeModal);
     });
+
 });
 /**
  * la fonction loadmodal permet de recharger les images dans la modale
