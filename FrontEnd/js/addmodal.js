@@ -25,6 +25,7 @@ modalCloseButton.addEventListener("click", () => {
 const fileInput = document.getElementById("file");
 const previewIcon = document.getElementById("preview-icon");
 const triggerFileButton = document.getElementById("trigger-file");
+const textinsert = document.getElementById("text");
 
 triggerFileButton.addEventListener("click", () => {
     fileInput.click();
@@ -56,6 +57,7 @@ function addimagemodal() {
             };
             reader.readAsDataURL(file);
             previewIcon.style.display = "none";
+            textinsert.style.display = "none";
             triggerFileButton.style.display = "none";
         } else {
             alert("Veuillez sélectionner une image au format JPG ou PNG.");
@@ -113,10 +115,7 @@ function addimagemodal() {
                 const newWork = await response.json();
                 console.log("Image ajoutée avec succès !");
                 ajoutgallerysansrecharge(newWork);
-                
                 document.querySelector("#modal1").style.display = "none"; // Ferme la modale
-                document.querySelector("#modal1 .modal-wrapper").style.display = "block";
-
             } else {
                 console.error("Erreur lors de l'ajout :", response.statusText);
             }
