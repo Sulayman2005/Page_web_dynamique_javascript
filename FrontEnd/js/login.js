@@ -15,7 +15,7 @@ document.getElementById("login_form").addEventListener("submit", async function 
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({ email, password }),
+            body: JSON.stringify({ email, password }), // permet d'authentifier l'utilisateur
         });
 
         if(!response.ok) {
@@ -25,11 +25,12 @@ document.getElementById("login_form").addEventListener("submit", async function 
                 errorDiv.textContent = "Une erreur est survenue veuillez résayer";
             }
         } else {
-            let result = await response.json();
+            let result = await response.json(); // si les identifiants sont valides, le serveur retroune un token
             const token = result.token;
-            sessionStorage.setItem("authToken", token);
+            sessionStorage.setItem("authToken", token);// le token est stockée dans le sessionStorage
+            // sous la clé de "authotoken"
             window.location.href = "index.html";
-        }    
+        }    // le sessionStorage est utilisé pour connecté l'utilisateur
     } catch (error) {
         console.error("Erreur lors de la tentative de connexion :", error);
     }

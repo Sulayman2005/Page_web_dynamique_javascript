@@ -108,7 +108,7 @@ getCategories();
 function setFilter(data) {
     const div = document.createElement("div");
     div.classList.add("filter-button"); // Classe générique pour tous les filtres
-    div.textContent = data.name;
+    div.textContent = data.name; // donne un nom aux filtres respective
     div.addEventListener("click", () => {
         // Retire la classe 'filter-active' de TOUS les boutons (y compris "Tous")
         document.querySelectorAll(".filter-button, .tous").forEach(button => button.classList.remove("filter-active"));
@@ -116,7 +116,7 @@ function setFilter(data) {
         // Ajoute la classe uniquement au bouton sélectionné
         div.classList.add("filter-active");
 
-        // Charge les travaux filtrés
+        // Charge les travaux filtrés dans chaque filtre
         getWorks(data.id);
     });
 
@@ -145,9 +145,9 @@ buttontous.addEventListener("click", () => {
  */
 
 function displayEditMode() {
-    if (sessionStorage.getItem("authToken")) {
-        document.querySelector(".filters").style.display = "none";
-        document.querySelector(".js-modal-2").style.display = "block";
+    if (sessionStorage.getItem("authToken")) { // stockage du token dans sessionStorage
+        document.querySelector(".filters").style.display = "none"; // masque les filtres utilisateur connecté
+        document.querySelector(".js-modal-2").style.display = "block"; //affiche le bouton pour la modal
         const editBanner = document.createElement("div");
         editBanner.classList.add("edit"); 
         editBanner.innerHTML = `
@@ -156,10 +156,11 @@ function displayEditMode() {
                     <i class="fa-regular fa-pen-to-square"></i> Mode édition
                 </a>    
             </p>`;    
-        document.body.prepend(editBanner);     
+        document.body.prepend(editBanner); // il a bien était ajouté au body     
         document.querySelector(".login_link").textContent = "logout";
         document.querySelector(".login_link").addEventListener("click", () => {
-            sessionStorage.removeItem("authToken");
+            sessionStorage.removeItem("authToken"); //garantir que l'utilisateur est complétement déconnecté
+            // supprimer le authotoken de sesionstorage
         });
     }    
 }

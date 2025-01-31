@@ -29,8 +29,10 @@ async function deleteImage(imageId) {
 }
 
 function deleteImagetrash(e) {
+    // lors du click on regarde si l'élément est cliqué contient la icon-trash
     if (e.target.classList.contains("icon-trash")) {
         e.preventDefault();
+        //récupère l'id de l'image
         const imageId = e.target.getAttribute("data-id"); // Récupère l'ID de l'image
         if (!imageId) return;
 
@@ -47,8 +49,8 @@ function deleteImagetrash(e) {
                     imageContainer.remove();
                 }
 
-                // Mise à jour immédiate sans recharger la page
-                updateGalleryWithoutReload();
+                // Mise à jour sans recharger la page
+                miseajourdelagalerie();
             } else {
                 alert("Problème avec l'API !");
             }
@@ -62,7 +64,7 @@ document.querySelector(".gallery_modal").addEventListener("click", deleteImagetr
 /**
  * Met à jour la galerie après suppression, sans recharger la page
  */
-function updateGalleryWithoutReload() {
+function miseajourdelagalerie() {
     const gallery = document.querySelector(".gallery");
     const modalGallery = document.querySelector(".gallery_modal");
 
@@ -70,7 +72,7 @@ function updateGalleryWithoutReload() {
     gallery.innerHTML = "";
     modalGallery.innerHTML = "";
 
-    fetch("http://localhost:5678/api/works")
+    fetch("http://localhost:5678/api/works") // requête fetch est envoyé au serveur
         .then((response) => response.json())
         .then((works) => {
             works.forEach((work) => {
