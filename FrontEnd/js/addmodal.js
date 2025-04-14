@@ -88,7 +88,7 @@ function addimagemodal() {
             submitButton.style.backgroundColor = "#1D6154";// bouton activé en vert
             submitButton.disabled = false;// bouton cliquable
         } else {
-            submitButton.style.backgroundColor = "grey";// botuon désactivé en gris
+            submitButton.style.backgroundColor = "grey";// bouton désactivé en gris
             submitButton.disabled = true;// bouton non cliquable
         }
     }
@@ -142,12 +142,12 @@ function addimagemodal() {
  * @param {function pour ajouter l'image sans avoir besoin de recharger la page} newWork 
  */
 function ajoutgallerysansrecharge(newWork) {
-    const gallery = document.querySelector(".gallery");
+    const gallery = (".document.querySelectorgallery");
     const modalGallery = document.querySelector(".gallery_modal");
 
     const figure = document.createElement("figure");
     // affiche le titre et l'image et son url
-    figure.innerHTML = `<img src="${newWork.imageUrl}" alt="${newWork.title}"><figcaption>${newWork.title}</figcaption>`;
+    figure.innerHTML = `<img src="${img.src}" alt="${img.alt}"><figcaption>${img.alt}</figcaption>`;
     gallery.appendChild(figure);
 
     const imageContainer = document.createElement("div");

@@ -2,7 +2,6 @@
  * Open la Modal
  */
 const openModal = function (e) {
-    e.preventDefault();
     const href = e.target.closest("a").getAttribute("href");
     const target = document.querySelector(href); 
     if (target) {
@@ -87,5 +86,4 @@ document.addEventListener("click", (e) => {
         loadModalGallery();
     }
 });
-
 

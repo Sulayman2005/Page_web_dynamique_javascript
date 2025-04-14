@@ -25,7 +25,7 @@ document.getElementById("login_form").addEventListener("submit", async function 
                 errorDiv.textContent = "Une erreur est survenue veuillez résayer";
             }
         } else {
-            let result = await response.json(); // si les identifiants sont valides, le serveur retroune un token
+            let result = await response.json(); // si les identifiants sont valides, le serveur retourne un token
             const token = result.token;
             sessionStorage.setItem("authToken", token);// le token est stockée dans le sessionStorage
             // sous la clé de "authotoken"
